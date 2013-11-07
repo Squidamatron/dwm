@@ -20,3 +20,6 @@
 # Vim files
 *~
 *.swp
+
+# Ignore dwm executable
+dwm
