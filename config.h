@@ -1,13 +1,23 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+static const char font[]            = "-*-xbmicons-medium-r-*-*-12-*-*-*-*-*-*-*" "," "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+/*
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
 static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#005577";
 static const char selfgcolor[]      = "#eeeeee";
+*/
+/* NEW COLORS! :D */
+static const char normbordercolor[] = "#222222";
+static const char normbgcolor[]     = "#212021";
+static const char normfgcolor[]     = "#DDDDDD";
+static const char selbordercolor[]  = "#908884";
+static const char selbgcolor[]      = "#212021";
+static const char selfgcolor[]      = "#D81860";
+
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
@@ -56,7 +66,7 @@ static const char *termcmd[]  = { "urxvt", "-e", "tmux", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
