@@ -1,5 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+// Allows the use of keyboard media keys
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const char font[]            = "-*-xbmicons-medium-r-*-*-12-*-*-*-*-*-*-*" "," "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*";
 /*
@@ -49,7 +52,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -63,9 +66,28 @@ static const Layout layouts[] = {
 //static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "urxvt", "-e", "tmux", NULL };
+static const char *mpdplaypause[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "toggle", NULL };
+static const char *mpdprev[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "prev", NULL };
+static const char *mpdnext[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "next", NULL };
+static const char *mpdvoldown[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "volume", "-1", NULL };
+static const char *mpdvolup[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "volume", "+1", NULL };
+static const char *mpdstop[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "stop", NULL };
+static const char *launchncmpcpp[] = { "urxvt", "-geometry", "130x44", "-e", "ncmpcpp", "-h", "ArchieMPD@localhost", NULL };
+static const char *filemanager[] = { "thunar", NULL };
+static const char *scrot[] = { "scrotscript", NULL }; 
+
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,                            XF86XK_AudioPlay, spawn,   {.v = mpdplaypause } },
+	{ 0,                            XF86XK_AudioPrev, spawn,   {.v = mpdprev } },
+	{ 0,                            XF86XK_AudioNext, spawn,   {.v = mpdnext } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn,   {.v = mpdvoldown } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn,   {.v = mpdvolup } },
+	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mpdstop } },
+	{ 0,                            XF86XK_Tools, spawn,       {.v = launchncmpcpp } },
+	{ 0,                            XF86XK_HomePage, spawn,    {.v = filemanager } },
+	{ 0,                            XK_Print,   spawn,         {.v = scrot } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
