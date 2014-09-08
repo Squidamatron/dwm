@@ -13,13 +13,22 @@ static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#005577";
 static const char selfgcolor[]      = "#eeeeee";
 */
-/* NEW COLORS! :D */
+/* Molokai Colors 
 static const char normbordercolor[] = "#222222";
 static const char normbgcolor[]     = "#212021";
 static const char normfgcolor[]     = "#DDDDDD";
 static const char selbordercolor[]  = "#908884";
 static const char selbgcolor[]      = "#212021";
 static const char selfgcolor[]      = "#D81860";
+*/
+
+/* hybrid colors */
+static const char normbordercolor[] = "#222222";
+static const char normbgcolor[]     = "#1D1F21";
+static const char normfgcolor[]     = "#C5C8C6";
+static const char selbordercolor[]  = "#908884";
+static const char selbgcolor[]      = "#1D1F21";
+static const char selfgcolor[]      = "#CC6666";
 
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -69,15 +78,16 @@ static const Layout layouts[] = {
 /* commands */
 //static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "urxvt", "-e", "tmux", NULL };
+static const char *termcmd[]  = { "urxvtc", "-e", "tmux", NULL };
 static const char *mpdplaypause[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "toggle", NULL };
 static const char *mpdprev[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "prev", NULL };
 static const char *mpdnext[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "next", NULL };
 static const char *mpdvoldown[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "volume", "-1", NULL };
 static const char *mpdvolup[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "volume", "+1", NULL };
 static const char *mpdstop[] = { "ncmpcpp", "-h", "ArchieMPD@localhost", "stop", NULL };
-static const char *launchncmpcpp[] = { "urxvt", "-geometry", "130x44", "-e", "ncmpcpp", "-h", "ArchieMPD@localhost", NULL };
+static const char *launchncmpcpp[] = { "urxvtc", "-geometry", "130x44", "-e", "ncmpcpp", "-h", "ArchieMPD@localhost", NULL };
 static const char *filemanager[] = { "thunar", NULL };
+static const char *clifilemanager[] = { "urxvtc", "-geometry", "130x44", "-e", "ranger", NULL };
 static const char *scrot[] = { "scrotscript", NULL }; 
 
 
@@ -91,7 +101,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mpdstop } },
 	{ 0,                            XF86XK_Tools, spawn,       {.v = launchncmpcpp } },
 	{ 0,                            XF86XK_HomePage, spawn,    {.v = filemanager } },
-	{ 0,                            XK_Print,   spawn,         {.v = scrot } },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = clifilemanager } },
+	{ 0,                            XK_Print,  spawn,          {.v = scrot } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
