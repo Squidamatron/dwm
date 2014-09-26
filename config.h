@@ -4,7 +4,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const char font[]            = "-*-xbmicons-medium-r-*-*-12-*-*-*-*-*-*-*" "," "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*";
+static const char font[]            = "-*-xbmicons-medium-r-*-*-12-*-*-*-*-*-*-*" "," "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*" "," "-misc-kochi gothic-medium-r-normal-*-12-0-0-0-p-0-jisx0201.1976-0";
 /*
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
